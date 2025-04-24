@@ -15,7 +15,7 @@
             <div class="inner_contens">
                 <div class="page_title">書籍登録</div>
                 <div class="page_contents">
-                    <form id="book_register_form" th:object="${bookMstDto}" th:action="@{/book/add}" method="post">
+                    <form id="book_register_form" th:object="${BookMstDto}" th:action="@{/book/add}" method="post">
                         <div class="mb30 flexarea">
                             <span>
                                 <a th:href="@{/book/index}" class="link">← 一覧へ戻る</a>
@@ -23,6 +23,38 @@
                         </div>
                     </form>
                 </div>
+                <form id="book_register_form" th:object="${bookMstDto}" th:action="@{/book/add}" method="post">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th style="color:red">*は必須項目です</th>
+                            </tr>
+                            <tr>
+                                <th >書籍名 <span style="color:red;">*</span></th>
+                            </tr>
+                            <td>
+                                <input type="text" name="title" th:field="*{title}" placeholder="書籍名を入力"/>
+                                <!--<p th:text="${title}"></p>-->
+                                <ul th:if="${errtitle}" th:each="err : ${errtitle}" style="color:red;">
+                                    <li th:text="${err}"></li>
+                                </ul>
+                            </td>
+                            <tr>
+                                <th>ISBN <span style="color:red;">*</span></th>
+                            </tr>
+                            <td>
+                                <input type="text" name="isbn" th:field="*{isbn}" placeholder="ISBNを入力"/>
+                                <!--<p th:text="${isbn}"></p>-->
+                                <ul th:if="${errisbn}" th:each="err : ${errisbn}" style="color:red;">
+                                    <li th:text="${err}"></li>
+                                </ul>
+                            </td>
+                        </tbody>
+                    </table>
+                    <div class="submit_btn">
+                        <input type="submit" value="保存">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
