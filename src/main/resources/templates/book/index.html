@@ -12,6 +12,21 @@
             <div th:replace="~{common :: header}"></div>
             <div class="inner_contens">
                 <div class="page_title">書籍一覧</div>
+                <form th:action="@{/book/add}" method="get">
+                    <div style = "text-align: right; margin: 20px;">
+                        <button type="submit">書籍登録</button>
+                    </div>
+                </form>
+                <table class="books_table">
+                    <tr>
+                        <th>書籍名</th>
+                        <th>ISBN</th>
+                    </tr>
+                    <tr th:each="book:${bookMstList}">
+                        <td th:text="${book.title}"></td>
+                        <td th:text="${book.isbn}"></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

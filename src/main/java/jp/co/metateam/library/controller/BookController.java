@@ -106,7 +106,7 @@ public class BookController {
             return "book/add";
         }
 
-        if(!bookMstService.isbnDuplicateCheck(isbn)){
+        if(bookMstService.isbnDuplicateCheck(isbn)){
             model.addAttribute("errisbn", "登録済みのISBNです");
             return "book/add";
         }
