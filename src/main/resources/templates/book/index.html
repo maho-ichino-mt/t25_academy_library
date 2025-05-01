@@ -13,11 +13,12 @@
             <div class="inner_contens">
                 <div class="page_title">書籍一覧</div>
                 <a th:href="@{/book/add}">
-                    <div style = "text-align: right; margin: 20px;">
-                        <button type="submit">書籍登録</button>
+                    <div class="button_container">
+                        <button class="book_register_button"><img class="user_icon" th:src="@{/images/icons/add.png}">書籍登録</button>
                     </div>
                 </a>
                 <table class="books_table">
+                    <caption class="space">書籍一覧</caption>
                     <tr>
                         <th>書籍名</th>
                         <th>ISBN</th>

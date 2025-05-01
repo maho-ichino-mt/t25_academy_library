@@ -1,9 +1,11 @@
 .books_table {
- width: 100%;
+ width: 70%;
  text-align: left;
  border-collapse: collapse;
  border-spacing: 0;
  border-radius:10px;
+ margin-left: auto;
+ margin-right: auto;
 }
 
 .books_table th{
@@ -25,7 +27,7 @@
 }
 
 .books_table td:nth-child(1){
-  width: 40%;
+  width: 60%;
 }
 
 .books_table td:nth-child(1) .book_title_contents{
@@ -63,3 +65,31 @@
   color: #0000EE;
 }
 
+.button_container {
+  text-align: right; /* 右揃え */
+}
+
+.book_register_button {
+  justify-content: center; /* 中央揃え（ただしインライン要素には効果なし） */
+  background-color: #9CF2D3;
+  color: #545454;
+  border-radius: 0.25rem;
+  border: none;
+  width: 130px;
+  height: 45px;
+  font-size: 20px;
+  display: inline-flex; /* 中央揃えを効かせるためにフレックスボックスに */
+  align-items: center; /* 縦方向の中央揃え */
+  justify-content: center; /* 横方向の中央揃え */
+}
+
+.book_register_button:hover {
+  cursor: pointer;
+}
+
+.space {
+  margin-top: 20px;   /* 上に20pxのスペース */
+  font-size: 20px;  /* フォントサイズを調整 */
+  color:#B9B9B9;
+  text-align: left;
+}
