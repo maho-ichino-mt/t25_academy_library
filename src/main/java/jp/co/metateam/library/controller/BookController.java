@@ -75,34 +75,41 @@ public class BookController {
             errTitleList.add("書籍名は必須です");
             errTitleNull = true;
         }
+
+        if(!errTitleNull){
+            if(title.length() > 255){
+                errTitleList.add("書籍名は255文字以内で入力してください");
+                errTitleCharacterCount = true;
+            }
+        }
+        
         if(isbn == "" || isbn == null){
             errIsbnList.add("ISBNは必須です");
             errIsbnNull = true;
         }
-        if(title.length() > 255){
-            errTitleList.add("書籍名は255文字以内で入力してください");
-            errTitleCharacterCount = true;
-        }
-        if(isbn.length() != 13){
-            errIsbnList.add("ISBNは13桁で入力してください");
-            errIsbnCharacterCount = true;
+
+        if(!errIsbnNull){
+            // isbnが数値かどうかチェック
+            String regex_num = "^[0-9]+$" ;
+            Pattern p1 = Pattern.compile(regex_num); // 正規表現パターンの読み込み
+            Matcher m1 = p1.matcher(isbn); // パターンと検査対象文字列の照合
+            boolean isbnCharacterType = m1.matches();
+            if(!isbnCharacterType){
+                errIsbnList.add("ISBNは半角数字で入力してください");
+                errIsbnCharacterType = true;
+            }
         }
 
-        // isbnが数値かどうかチェック
-        String regex_num = "^[0-9]+$" ;
-        Pattern p1 = Pattern.compile(regex_num); // 正規表現パターンの読み込み
-        Matcher m1 = p1.matcher(isbn); // パターンと検査対象文字列の照合
-        boolean isbnCharacterType = m1.matches();
-        if(!isbnCharacterType){
-            errIsbnList.add("ISBNは半角数字で入力してください");
-            errIsbnCharacterType = true;
+        if(!errIsbnNull){
+            if(isbn.length() != 13){
+                errIsbnList.add("ISBNは13桁で入力してください");
+                errIsbnCharacterCount = true;
+            }
         }
-
+        
         if(errTitleNull || errIsbnNull || errTitleCharacterCount || errIsbnCharacterCount || errIsbnCharacterType){
-                model.addAttribute("errtitle", errTitleList);
-                model.addAttribute("errisbn", errIsbnList);
-            
-            
+            model.addAttribute("errtitle", errTitleList);
+            model.addAttribute("errisbn", errIsbnList);
             return "book/add";
         }
 

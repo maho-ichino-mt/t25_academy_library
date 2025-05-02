@@ -52,13 +52,13 @@ public class BookMstService {
 
     public boolean isbnDuplicateCheck(String isbn){
         List<BookMstDto> bookMstDtoList = findAvailableWithStockCount();
-        return bookMstDtoList.contains(isbn);
-        // for (BookMstDto book: bookMstDtoList){
-        //     if(isbn == book.getIsbn()){
-        //         return false;
-        //     }
-        // }
-        // return true;
+        for (BookMstDto book: bookMstDtoList){
+            String book_isbn = book.getIsbn();
+            if(isbn.equals(book_isbn)){
+                return true;
+            }
+        }
+        return false;
     }
     
     public List<BookMstDto> findAvailableWithStockCount() {
